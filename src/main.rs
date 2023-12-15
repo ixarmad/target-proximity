@@ -60,6 +60,19 @@ fn generate_number(max_range: u32) -> u32 {
     thread_rng().gen_range(1..max_range)
 }
 
+fn collect_guesses_into_proximities(players: &Vec<Player>, max_range: u32) -> Vec<(String, u32)> {
+    let mut player_proximities = Vec::<(String, u32)>::new();
+    let target = generate_number(create_max_range(players));
+
+    for player in players {
+        println!("{}'s turn", player.name);
+        let guess = collect_input::<u32>(&format!("Guess the number (1-{max_range}):"));
+        player_proximities.push((player.name.clone(), guess.abs_diff(target)));
+    }
+
+    player_proximities
+}
+
 fn main() {
     let players = collect_players();
     println!("{:?}", players);
