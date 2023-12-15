@@ -85,6 +85,13 @@ fn update_scores(players: &mut Vec<Player>, winner: &str) {
     }
 }
 
+fn print_scores(players: &Vec<Player>) {
+    println!("Scores:");
+    for player in players {
+        println!("- {}", player.to_string());
+    }
+}
+
 fn main() {
     let players = collect_players();
     println!("{:?}", players);
