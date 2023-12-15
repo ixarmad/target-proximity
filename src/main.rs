@@ -73,6 +73,10 @@ fn collect_guesses_into_proximities(players: &Vec<Player>, max_range: u32) -> Ve
     player_proximities
 }
 
+fn get_winner(player_proximities: &Vec<(String, u32)>) -> String {
+    player_proximities[0].0.to_owned()
+}
+
 fn main() {
     let players = collect_players();
     println!("{:?}", players);
