@@ -1,3 +1,4 @@
+use rand::{thread_rng, Rng};
 use std::io::stdin;
 use std::str::FromStr;
 
@@ -54,6 +55,9 @@ fn collect_players() -> Vec<Player> {
 
 fn create_max_range(players: &Vec<Player>) -> u32 {
     return players.len() as u32 * 50;
+}
+fn generate_number(max_range: u32) -> u32 {
+    thread_rng().gen_range(1..max_range)
 }
 
 fn main() {
