@@ -52,6 +52,10 @@ fn collect_players() -> Vec<Player> {
     players
 }
 
+fn create_max_range(players: &Vec<Player>) -> u32 {
+    return players.len() as u32 * 50;
+}
+
 fn main() {
     let players = collect_players();
     println!("{:?}", players);
