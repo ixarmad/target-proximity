@@ -92,7 +92,29 @@ fn print_scores(players: &Vec<Player>) {
     }
 }
 
+fn play_game() {
+    println!("Welcome to the Target Proximity Game!");
+
+    let mut players = collect_players();
+    let max_range = create_max_range(&players);
+
+    loop {
+        let mut player_proximities = collect_guesses_into_proximities(&players, max_range);
+        player_proximities.sort_by_key(|&(_, v)| v);
+
+        let winner = get_winner(&player_proximities);
+        println!("Congratulations! {}! You are the winner!", winner);
+
+        update_scores(&mut players, &winner);
+        print_scores(&players);
+
+        let play_again = collect_input::<String>("Play again? (y/n)");
+        if play_again.to_ascii_lowercase() != "y" {
+            break;
+        }
+    }
+}
+
 fn main() {
-    let players = collect_players();
-    println!("{:?}", players);
+    play_game()
 }
