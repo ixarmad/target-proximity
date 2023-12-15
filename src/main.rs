@@ -77,6 +77,14 @@ fn get_winner(player_proximities: &Vec<(String, u32)>) -> String {
     player_proximities[0].0.to_owned()
 }
 
+fn update_scores(players: &mut Vec<Player>, winner: &str) {
+    for player in players {
+        if player.name == winner {
+            player.score += 1
+        }
+    }
+}
+
 fn main() {
     let players = collect_players();
     println!("{:?}", players);
